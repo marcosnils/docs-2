@@ -1,7 +1,10 @@
+import OAuthSupport from './oauth-support.mdx'
+import HybridMode from './hybrid-mode.mdx'
+
 export const meta = {
   editUrl:
     'pages/docs/integrations/v2/integrations-docs-mdx/building-oauth-apps/building-oauth-apps.mdx',
-  lastEdited: '2019-05-14T08:52:04.000Z'
+  lastEdited: '2019-05-14T17:16:34.000Z'
 }
 
 # Building OAuth Integrations
@@ -10,28 +13,5 @@ The main purpose of ZEIT Integrations is to introduce new capabilities inside th
 
 However, you may need more capabilities beyond UiHooks. That where OAuth support comes handy.
 
-## OAuth Support
-
-With our OAuth support, you can connect your app with ZEIT or provide "login with ZEIT" functionality.
-
-Every ZEIT Integration is a full-fledged OAuth app. You can add the redirect URL when you creating an integration or by editing an existing app. Then you will get OAuth credentials.
-
-Then you can follow our [OAuth API reference](https://zeit.co/docs/api#endpoints/oauth2) to build an OAuth integration.
-
-## HyBrid Mode
-
-Sometimes, your integration uses an UiHook but you also need to access the ZEIT API in a background worker. Then you cannot use UiHook's token since it's only valid for the execution time of the UiHook.
-
-That's where HyBrid mode comes handy. Basically it's a combination of both UiHooks and OAuth. This is how it works:
-
-- When you create your app, you can add both the Redirect URL and UI Hook URL.
-- Then you will get a public URL for your app in a format of <https://zeit.co/integration/:slug>.
-- When a user install the integration via the above public URL, we start the OAuth authorization process and send the user to the Redirect URL.
-
-That URL comes with following query paramters:
-
-- teamId - teamId of the installation
-- code - OAuth authorization code. You can [exchange](https://zeit.co/docs/api#endpoints/oauth2/exchanging-code-for-an-access-token) an accessToken using this code
-- next - The installation URL of your app in the ZEIT dashboard. You can rediect the user to this URL after you obtained the accessToken.
-
-Now you can use the UiHook to display reports and accept inputs from the user. In the same time, you can use the obtained accessToken to access the ZEIT API anywhere anytime.
+<OAuthSupport />
+<HybridMode />
