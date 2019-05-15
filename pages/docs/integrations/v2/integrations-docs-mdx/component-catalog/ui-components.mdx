@@ -3,7 +3,7 @@ import Note from '~/components/text/note'
 export const meta = {
   editUrl:
     'pages/docs/integrations/v2/integrations-docs-mdx/component-catalog/ui-components.mdx',
-  lastEdited: '2019-05-10T01:51:43.000Z'
+  lastEdited: '2019-05-15T07:30:29.000Z'
 }
 
 ## UI Components
@@ -66,10 +66,13 @@ The Img component supports the following props:
 ### Code
 
 ```jsx
-<Code value="${encodeURIComponent('const a = "Arunoda"; <Code/>')}" />
+const code = `
+	<html>You can put anything here</html>
+`
+<Code>${code}</Code>
 ```
 
-You should provide the value prop with a string encoded with `encodeURIComponent`.
+> To get better result on this, use our htm support.
 
 ### Fieldset
 
