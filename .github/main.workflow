@@ -3,9 +3,16 @@ workflow "Build and Index Files" {
   resolves = ["Install"]
 }
 
+action "Print env" {
+  uses = "docker://mhart/alpine-node:10"
+  runs = "sh -c"
+  args = ["env"]
+}
+
 action "Master" {
-  uses = "actions/bin/filter@master"
-  args = "branch master"
+  needs = ["Print env"]
+  uses  = "actions/bin/filter@master"
+  args  = "branch master"
 }
 
 action "Install" {
