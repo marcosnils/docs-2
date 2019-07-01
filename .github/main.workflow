@@ -9,20 +9,14 @@ action "Print env" {
   args = ["env"]
 }
 
-action "Master" {
+action "Master and not deleted" {
   needs = ["Print env"]
   uses  = "actions/bin/filter@master"
-  args  = "branch master"
-}
-
-action "Not Deleted" {
-  needs = ["Master"]
-  uses  = "actions/bin/filter@master"
-  args  = "not deleted"
+  args  = "branch master && not deleted"
 }
 
 action "Install" {
-  needs = ["Not Deleted"]
+  needs = ["Master and not deleted"]
   uses  = "docker://mhart/alpine-node:10"
   runs  = "sh -c"
   args  = ["yarn install --production"]
