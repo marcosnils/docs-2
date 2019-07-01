@@ -15,6 +15,12 @@ action "Master" {
   args  = "branch master"
 }
 
+action "Not Deleted" {
+  needs = ["Print env"]
+  uses  = "actions/bin/filter@master"
+  args  = "not deleted"
+}
+
 action "Install" {
   needs = ["Master"]
   uses  = "docker://mhart/alpine-node:10"
